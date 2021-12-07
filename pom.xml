@@ -1,97 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.4.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>br.ce.wcaquino</groupId>
-	<artifactId>tasks-backend</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
-	<name>tasks-backend</name>
-	<packaging>war</packaging>
-	<description>A very simple task management tool</description>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>br.ce.wcaquino</groupId>
+    <artifactId>tasks-backend</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+    <name>tasks-backend</name>
+    <packaging>war</packaging>
+    <description>A very simple task management tool</description>
 
-	<properties>
-		<java.version>1.8</java.version>
-		<pitest.version>1.4.3</pitest.version>
-		<pact.version>4.1.7</pact.version>
-	</properties>
+    <properties>
+        <java.version>1.8</java.version>
+        <pitest.version>1.4.3</pitest.version>
+        <pact.version>4.1.7</pact.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.10.19</version>
-			<scope>test</scope>
-		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>au.com.dius.pact.provider</groupId>-->
-<!--			<artifactId>junit</artifactId>-->
-<!--			<version>${pact.version}</version>-->
-<!--		</dependency>-->
-		<dependency>
-			<groupId>au.com.dius</groupId>
-			<artifactId>pact-jvm-provider-spring</artifactId>
-			<version>4.0.10</version>
-		</dependency>
-<!--		&lt;!&ndash; https://mvnrepository.com/artifact/au.com.dius.pact.provider/spring &ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>au.com.dius.pact.provider</groupId>-->
-<!--			<artifactId>spring</artifactId>-->
-<!--			<version>4.3.1</version>-->
-<!--		</dependency>-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
+        <!--		<dependency>-->
+        <!--			<groupId>au.com.dius.pact.provider</groupId>-->
+        <!--			<artifactId>junit</artifactId>-->
+        <!--			<version>${pact.version}</version>-->
+        <!--		</dependency>-->
+        <dependency>
+            <groupId>au.com.dius</groupId>
+            <artifactId>pact-jvm-provider-spring</artifactId>
+            <version>4.0.10</version>
+        </dependency>
+        <!--		&lt;!&ndash; https://mvnrepository.com/artifact/au.com.dius.pact.provider/spring &ndash;&gt;-->
+        <!--		<dependency>-->
+        <!--			<groupId>au.com.dius.pact.provider</groupId>-->
+        <!--			<artifactId>spring</artifactId>-->
+        <!--			<version>4.3.1</version>-->
+        <!--		</dependency>-->
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>2.6.1</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.18.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.pitest</groupId>
-				<artifactId>pitest-maven</artifactId>
-				<version>${pitest.version}</version>
-				<executions>
-					<execution>
-						<id>pit-report</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>mutationCoverage</goal>
-						</goals>
-					</execution>
-				</executions>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.6.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>au.com.dius.pact.provider</groupId>
+                <artifactId>maven</artifactId>
+                <version>${pact.version}</version>
+                <configuration>
+                    <serviceProviders>
+                        <serviceProvider>
+                            <name>test_provider</name>
+                            <protocol>http</protocol>
+                            <host>localhost</host>
+                            <port>8000</port>
+                            <path>/</path>
+                            <pactFileDirectory>src/test/resources/pacts</pactFileDirectory>
+                        </serviceProvider>
+                    </serviceProviders>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest.version}</version>
+                <executions>
+                    <execution>
+                        <id>pit-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
+                    </execution>
+                </executions>
 
-				<configuration>
-					<targetClasses>
-						<param>br.ce.wcaquino.*</param>
-					</targetClasses>
-					<targetTests>
-						<param>br.ce.wcaquino.*</param>
-					</targetTests>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+                <configuration>
+                    <targetClasses>
+                        <param>br.ce.wcaquino.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>br.ce.wcaquino.*</param>
+                    </targetTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
