@@ -70,3 +70,9 @@ jobs:
           checkstring: "Hello World!"
           delay: 30
           rollbackonhealthcheckfailed: true
+
+  test-curl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: curl
+         run: curl https://gfr-pact-backend.herokuapp.com
