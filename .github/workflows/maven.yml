@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test-curl
-         run: |
+        run: |
           curl https://gfr-pact-backend.herokuapp.com
 
   deploy:
