@@ -56,12 +56,6 @@ jobs:
         path: target/pit-reports
 
 
-    env:
-      HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
-    steps:
-      - name: Deploy in heroku
-        run: mvn heroku:deploy
-
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
