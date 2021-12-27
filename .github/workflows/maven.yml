@@ -74,6 +74,6 @@ jobs:
           heroku_email: "gfr-pact-backend@guifr.com.br"
           healthcheck: "https://gfr-pact-backend.herokuapp.com"
           checkstring: "Hello World!"
-          delay: 30
+          delay: 300
           rollbackonhealthcheckfailed: true
 
