@@ -67,7 +67,7 @@ jobs:
     steps:
       - name: test-ls
         run: |
-          ls -ltra target/
+          ls -ltra
           ls -ltra target/
 
   deploy:
