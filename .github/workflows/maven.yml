@@ -79,9 +79,9 @@ jobs:
         run: |
           ls -ltra
 
-      - name: run-tre
-          run: |
-            tree
+      - name: run-tree
+        run: |
+          tree
 
       - name: Deploy heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
