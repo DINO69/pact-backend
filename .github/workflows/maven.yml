@@ -57,10 +57,14 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    with:
+      java-version: '8.0.292'
+      distribution: 'adopt'
+      cache: maven
     env:
       HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
     steps:
       - name: Deploy in heroku
-         run: mvn heroku:deploy
+        run: mvn heroku:deploy
 
 
