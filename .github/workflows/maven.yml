@@ -68,14 +68,19 @@ jobs:
       - name: test-ls
         run: |
           ls -ltra
-          ls -ltra target/
 
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+
+      - name: run-ls
+        run: |
+          ls -ltra
+
+      - name: Deploy heroku
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "gfr-pact-backend"
