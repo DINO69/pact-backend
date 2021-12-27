@@ -13,13 +13,16 @@
     <artifactId>tasks-backend</artifactId>
     <version>0.0.2-SNAPSHOT</version>
     <name>tasks-backend</name>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <description>A very simple task management tool</description>
 
     <properties>
         <java.version>1.8</java.version>
         <pitest.version>1.4.3</pitest.version>
         <pact.version>4.1.7</pact.version>
+        <my.localhost>localhost</my.localhost>
+        <my.pactBroker>localhost</my.pactBroker>
+        <start-class>br.ce.wcaquino.taskbackend.TaskBackendApplication</start-class>
     </properties>
 
     <dependencies>
@@ -61,18 +64,19 @@
                         <serviceProvider>
                             <name>test_provider</name>
                             <protocol>http</protocol>
-                            <host>localhost</host>
+                            <host>${my.localhost}</host>
                             <port>8000</port>
                             <path>/</path>
                         </serviceProvider>
                     </serviceProviders>
-                    <pactBrokerUrl>http://localhost:9080/</pactBrokerUrl>
+                    <pactBrokerUrl>http://${my.pactBroker}:9080/</pactBrokerUrl>
                     <pactBrokerUsername>user1</pactBrokerUsername>
                     <pactBrokerPassword>userpasswd</pactBrokerPassword>
                     <trimSnapshot>true</trimSnapshot>
                     <configuration>
                         <pact.verifier.publishResults>true</pact.verifier.publishResults>
                     </configuration>
+
                 </configuration>
             </plugin>
             <plugin>
@@ -102,6 +106,83 @@
                         <param>br.ce.wcaquino.*</param>
                     </targetTests>
                 </configuration>
+            </plugin>
+
+            <!-- Heroku Maven Plugin Configuration -->
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>2.0.3</version>
+                <configuration>
+                    <appName>gfr-pact-backend</appName>
+                    <includeTarget>false</includeTarget>
+                    <includes>
+                        <include>target/${project.build.finalName}.jar</include>
+                    </includes>
+                    <jdkVersion>${java.version}</jdkVersion>
+                    <processTypes>
+                        <web>java -Dserver.port=$PORT $JAVA_OPTS -jar target/${project.build.finalName}.jar</web>
+                    </processTypes>
+
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <skipIfEmpty>true</skipIfEmpty>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>br.ce.wcaquino.taskbackend.TaskBackendApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>br.ce.wcaquino.taskbackend.TaskBackendApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <mainClass>${start-class}</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

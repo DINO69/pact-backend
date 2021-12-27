@@ -54,3 +54,13 @@ jobs:
       with:
         name: code-coverage-report
         path: target/pit-reports
+
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
+    steps:
+      - name: Deploy in heroku
+         run: mvn heroku:deploy
+
+
