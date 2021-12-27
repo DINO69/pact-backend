@@ -75,6 +75,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Build
+        run: mvn package -DskipTests=true
+
       - name: run-ls
         run: |
           ls -ltra
