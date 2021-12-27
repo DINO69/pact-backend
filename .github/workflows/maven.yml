@@ -78,6 +78,12 @@ jobs:
       - name: Build
         run: mvn package -DskipTests=true
 
+      - run: |
+          git config --global user.email "gfr-pact-backend@guifr.com.br"
+          git config --global user.name "gfr-pact-backend"
+          git add -A
+          git commit -m "Added target/tasks-backend-0.0.2-SNAPSHOT.jar"
+
       - name: run-ls
         run: |
           ls -ltra
