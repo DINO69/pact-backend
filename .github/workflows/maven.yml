@@ -68,6 +68,7 @@ jobs:
       - name: test-ls
         run: |
           ls -ltra target/
+          ls -ltra target/
 
   deploy:
     needs: [build]
