@@ -70,7 +70,7 @@ jobs:
           ls -ltra
 
   deploy:
-#    needs: [build]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -111,9 +111,9 @@ jobs:
           heroku_app_name: "gfr-pact-backend"
           heroku_email: "gfr-pact-backend@guifr.com.br"
           procfile: "web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/tasks-backend-0.0.2-SNAPSHOT.jar"
-#          healthcheck: "https://gfr-pact-backend.herokuapp.com"
-#          checkstring: "Hello World!"
+          healthcheck: "https://gfr-pact-backend.herokuapp.com"
+          checkstring: "Hello World!"
           branch: master
-#          delay: 30
-#          rollbackonhealthcheckfailed: true
+          delay: 30
+          rollbackonhealthcheckfailed: true
 
