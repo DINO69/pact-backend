@@ -75,15 +75,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build
-        run: mvn package -DskipTests=true
-
-      - name: run git
-        run: |
-          git config --global user.email "gfr-pact-backend@guifr.com.br"
-          git config --global user.name "gfr-pact-backend"
-          git add -A
-          git commit -m "all files"
+#      - name: Build
+#        run: mvn package -DskipTests=true
+#
+#      - name: run git
+#        run: |
+#          git config --global user.email "gfr-pact-backend@guifr.com.br"
+#          git config --global user.name "gfr-pact-backend"
+#          git add -A
+#          git commit -m "all files"
 
       - name: Deploy heroku
         uses: akhileshns/heroku-deploy@master # This is the action
