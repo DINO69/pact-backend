@@ -77,7 +77,7 @@ jobs:
 
       - name: Build
         run: mvn package -DskipTests=true
-#
+
       - name: run git
         run: |
 #          git config --global user.email "gfr-pact-backend@guifr.com.br"
