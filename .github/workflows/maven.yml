@@ -75,7 +75,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build
+      - name: bbuild
         run: mvn package -DskipTests=true
 
       - name: run git
