@@ -75,12 +75,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-#      - name: Build
-#        run: mvn package -DskipTests=true
-      - name: run reset git
+      - name: Build
+        run: mvn package -DskipTests=true
+
+      - name: run git
         run: |
-          git add .
-          git reset --hard HEAD
+          git config --global user.email "gfr-pact-backend@guifr.com.br"
+          git config --global user.name "gfr-pact-backend"
+          git add -A
+          git commit -m "all files"
 
       - name: Deploy heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
@@ -91,6 +94,7 @@ jobs:
           procfile: "web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/tasks-backend-0.0.2-SNAPSHOT.jar"
           healthcheck: "https://gfr-pact-backend.herokuapp.com"
           checkstring: "Hello World!"
+          branch:main
           delay: 30
           rollbackonhealthcheckfailed: true
 
