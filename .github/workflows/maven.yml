@@ -80,10 +80,16 @@ jobs:
 
       - name: run git
         run: |
-#          git config --global user.email "gfr-pact-backend@guifr.com.br"
-#          git config --global user.name "gfr-pact-backend"
           git add -A
           git commit -m "all files"
+
+
+#      - name: run git
+#        run: |
+#          git config --global user.email "gfr-pact-backend@guifr.com.br"
+#          git config --global user.name "gfr-pact-backend"
+#          git add -A
+#          git commit -m "all files"
 
 #      - name: run reset git
 #        run: |
