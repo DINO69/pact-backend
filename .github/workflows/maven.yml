@@ -75,8 +75,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build
-        run: mvn package -DskipTests=true
+#      - name: Build
+#        run: mvn package -DskipTests=true
 
       - name: Deploy heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
@@ -87,6 +87,7 @@ jobs:
           procfile: "web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/tasks-backend-0.0.2-SNAPSHOT.jar"
           healthcheck: "https://gfr-pact-backend.herokuapp.com"
           checkstring: "Hello World!"
+          branch:
           delay: 30
           rollbackonhealthcheckfailed: true
 
