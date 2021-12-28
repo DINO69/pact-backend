@@ -88,7 +88,7 @@ jobs:
         run: |
           git config --global user.email "gfr-pact-backend@guifr.com.br"
           git config --global user.name "gfr-pact-backend"
-          git add -A
+          git add .
           git commit -m "all files"
 
 
