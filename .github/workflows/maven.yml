@@ -94,7 +94,7 @@ jobs:
           procfile: "web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/tasks-backend-0.0.2-SNAPSHOT.jar"
           healthcheck: "https://gfr-pact-backend.herokuapp.com"
           checkstring: "Hello World!"
-          branch:main
+          branch: main
           delay: 30
           rollbackonhealthcheckfailed: true
 
