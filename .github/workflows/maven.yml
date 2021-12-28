@@ -86,7 +86,7 @@ jobs:
           git commit -m "all files"
 
       - name: Deploy heroku
-        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        uses: akhileshns/heroku-deploy@master # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "gfr-pact-backend"
