@@ -85,6 +85,11 @@ jobs:
 #          git add -A
 #          git commit -m "all files"
 
+      - name: run reset git
+        run: |
+          git .
+          git reset --hard HEAD
+
       - name: Deploy heroku
         uses: akhileshns/heroku-deploy@master # This is the action
         with:
