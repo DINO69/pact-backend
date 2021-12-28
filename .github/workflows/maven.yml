@@ -75,6 +75,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: run reset git
+        run: |
+          git add .
+          git reset --hard HEAD
+          git checkout master
+
       - name: bbuild
         run: mvn package -DskipTests=true
 
