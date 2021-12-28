@@ -92,9 +92,9 @@ jobs:
           heroku_app_name: "gfr-pact-backend"
           heroku_email: "gfr-pact-backend@guifr.com.br"
           procfile: "web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/tasks-backend-0.0.2-SNAPSHOT.jar"
-          healthcheck: "https://gfr-pact-backend.herokuapp.com"
-          checkstring: "Hello World!"
-          branch: main
-          delay: 30
-          rollbackonhealthcheckfailed: true
+#          healthcheck: "https://gfr-pact-backend.herokuapp.com"
+#          checkstring: "Hello World!"
+#          branch: main
+#          delay: 30
+#          rollbackonhealthcheckfailed: true
 
