@@ -87,7 +87,7 @@ jobs:
 
       - name: run reset git
         run: |
-          git .
+          git add .
           git reset --hard HEAD
 
       - name: Deploy heroku
