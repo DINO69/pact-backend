@@ -80,6 +80,8 @@ jobs:
 
       - name: run git
         run: |
+          git config --global user.email "gfr-pact-backend@guifr.com.br"
+          git config --global user.name "gfr-pact-backend"
           git add -A
           git commit -m "all files"
 
@@ -105,7 +107,7 @@ jobs:
           procfile: "web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/tasks-backend-0.0.2-SNAPSHOT.jar"
 #          healthcheck: "https://gfr-pact-backend.herokuapp.com"
 #          checkstring: "Hello World!"
-          branch: main
+          branch: master
 #          delay: 30
 #          rollbackonhealthcheckfailed: true
 
