@@ -55,6 +55,19 @@ jobs:
         name: code-coverage-report
         path: target/pit-reports
 
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
+      with:
+        files: target/surefire-reports/*.xml
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./target/pit-reports/*/
+
   test-curl:
     runs-on: ubuntu-latest
     steps:
