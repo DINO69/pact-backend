@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public enum SchoolStatus {
     APPROVED(60,100),
-    RECOVERY(40,60),
-    DISAPPROVED(0,40);
+    RECOVERY(40,59),
+    DISAPPROVED(0,39);
 
     private int minimum;
     private int maximum;
@@ -17,7 +17,7 @@ public enum SchoolStatus {
 
     public static SchoolStatus whatStatus(int grade){
         return Arrays.stream(SchoolStatus.values())
-                .filter(s -> grade > s.getMinimum() && grade < s.getMaximum())
+                .filter(s -> grade >= s.getMinimum() && grade <= s.getMaximum())
                 .findFirst()
                 .get();
     }
